@@ -90,6 +90,7 @@ function cleanup(files, signatures) {
 
 function verifyFiles(files, signatures, identifier, callback) {
     let pending = files.length;
+    let errorReported = false;
 
     for (let i = 0; i < files.length; i++) {
         const file = files[i];
@@ -97,12 +98,13 @@ function verifyFiles(files, signatures, identifier, callback) {
 
         const child = execFile('ssh-keygen', ['-Y', 'verify', '-f', allowed_signers, '-n', 'file', '-s', signature.path, '-I', identifier], (err, stdout, stderr) => {
             if (err) {
-                console.error(err);
-                callback(err);
+                if (!errorReported) {
+                    errorReported = true;
+                    callback(err);
+                }
                 return;
             }
-            // console.log(`stdout: ${stdout}`);
-            if (--pending === 0) callback(null);
+            if (--pending === 0 && !errorReported) callback(null);
         });
 
         const fileStream = fs.createReadStream(file.path);
