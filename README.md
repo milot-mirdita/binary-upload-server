@@ -23,8 +23,9 @@ cp .env.example .env
 | `SIGNERS_FILE` | Path to the allowed signers file                   | `allowed_signers` |
 | `MULTER_TEMP`  | Temporary directory for incoming uploads           | `uploads`      |
 | `UPLOAD_PATH`  | Root directory where verified files are stored     | `archive`      |
-| `EXPRESS_HOST` | Host the server binds to                           | `127.0.0.1`    |
-| `EXPRESS_PORT` | Port the server listens on                         | `3000`         |
+| `EXPRESS_HOST`   | Host the server binds to                         | `127.0.0.1`    |
+| `EXPRESS_PORT`   | Port the server listens on                       | `3000`         |
+| `EXPRESS_PREFIX` | URL prefix for all routes                        | `/api`         |
 
 ### Running
 
