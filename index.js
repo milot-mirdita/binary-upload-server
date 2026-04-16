@@ -10,6 +10,7 @@ const app = express();
 const allowed_signers = process.env.SIGNERS_FILE;
 const multer_storage = process.env.MULTER_TEMP;
 const upload_path = process.env.UPLOAD_PATH;
+const express_host = process.env.EXPRESS_HOST;
 const express_port = process.env.EXPRESS_PORT;
 if (!fs.existsSync(allowed_signers)) {
     console.error(`Signers file not found: ${allowed_signers}`);
@@ -128,4 +129,4 @@ function moveFiles(files, directory) {
     });
 }
 
-app.listen(express_port, () => console.log(`Server started on port ${express_port}`));
+app.listen(express_port, express_host, () => console.log(`Server started on port ${express_host}:${express_port}`));
