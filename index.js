@@ -12,7 +12,7 @@ const multer_storage = process.env.MULTER_TEMP;
 const upload_path = process.env.UPLOAD_PATH;
 const express_host = process.env.EXPRESS_HOST;
 const express_port = process.env.EXPRESS_PORT;
-const express_prefix = process.env.EXPRESS_PREFIX ?? '/api';
+const express_prefix = process.env.EXPRESS_PREFIX !== undefined ? process.env.EXPRESS_PREFIX : '/api';
 if (!fs.existsSync(allowed_signers)) {
     console.error(`Signers file not found: ${allowed_signers}`);
     process.exit(1);
