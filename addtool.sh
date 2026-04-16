@@ -39,7 +39,7 @@ fi
 
 ssh-keygen -t ed25519 -C "$IDENTIFIER" -f "$PRIVATE_KEY" -N ""
 
-read -r _comment keytype pubkey < <(cat "$PUBLIC_KEY")
+read -r keytype pubkey _comment < <(cat "$PUBLIC_KEY")
 echo "${IDENTIFIER} ${keytype} ${pubkey}" >> "$SIGNERS_FILE"
 
 echo ""
